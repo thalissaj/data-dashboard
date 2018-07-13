@@ -54,7 +54,7 @@ body{
   background-color: #ffe521;
   width: 100%;
 }
-#entrence{
+.entrence{
   width: 100%;
   display: flex;
   align-items: center;
@@ -62,11 +62,11 @@ body{
   flex-direction: column;
 }
 
-#entrence h4{
+.entrence h4{
   font-size: 80px;
   margin-top: 100px;
 }
-#entrence input {
+.entrence input {
   margin-top: 30px;
   border-style: none;
   border-bottom: 1px solid black;
@@ -79,7 +79,7 @@ body{
  color: #aaaaaa;
 }
 
-#entrence button {
+.entrence button {
   margin-top: 30px;
   height: 50px;
   width: 70px;

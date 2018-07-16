@@ -159,3 +159,7 @@ function satisfaction (sede, turma){
 //     }
 //   }
 // }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1f1f913e5f127c7d008f0e1e3de4a071054559e1

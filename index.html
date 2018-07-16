@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Data Dashboard</title>
   </head>
-  <body>
+  <body class="yellow">
     <nav id="container-rom">
-      <img src="assets/laboratoria2.png" alt="logo" class="logo-rom">
+      <img src="assets/images/laboratoria2.png" alt="logo" class="logo-rom">
     </nav>
+    <div id="user"></div>
     <aside id="sideBar">
       <div class="toggle_btn" onclick="toggleSidebar()">
         <span></span>
@@ -17,26 +19,26 @@
         <span></span>
       </div>
       <ul>
-        <li><b>AREQUIPA</b></li>
-        <li onclick="aqp2016_2()">2016-2</li>
-        <li>2017-1</li>
-        <li><b>CIDADE DO MÉXICO</b></li>
-        <li>2017-1</a></li>
-        <li>2017-2</li>
-        <li><b>LIMA</b></li>
-        <li>2016-2</li>
-        <li>2017-1</li>
-        <li>2017-2</li>
-        <li><b>SANTIAGO CHILE</b></li>
-        <li>2016-2</li>
-        <li>2017-1</li>
-        <li>2017-2</li>
+        <li class="sede"><b>AREQUIPA</b></li>
+        <li class="turma"><a onclick="aqp2016_2()">2016-2</a></li>
+        <li class="turma"><a onclick="aqp2017_1()">2017-1</a></li>
+        <li class="sede"><b>CIDADE DO MÉXICO</b></li>
+        <li class="turma"><a onclick="cdmx2017_1()">2017-1</a></li>
+        <li class="turma"><a onclick="cdmx2017_2()">2017-2</a></li>
+        <li class="sede"><b>LIMA</b></li>
+        <li class="turma"><a onclick="lim2016_2()">2016-2</a></li>
+        <li class="turma"><a onclick="lim2017_1()">2017-1</a></li>
+        <li class="turma"><a onclick="lim2017_2()">2017-2</a></li>
+        <li class="sede"><b>SANTIAGO CHILE</b></li>
+        <li class="turma"><a onclick="scl2016_2()">2016-2</a></li>
+        <li class="turma"><a onclick="scl2017_1()">2017-1</a></li>
+        <li class="turma"><a onclick="scl2017_2()">2017-2</a></li>
       </ul>
     </aside>
   <div id="entrence" class="entrence">
     <h4>Olá</h4>
     <input id="name" type="text" placeholder="Digite seu nome...">
-    <button class="entrece-btn" type="button" name="button">Entrar</button>
+    <button class="entrence-btn" type="button" name="button">Entrar</button>
   </div>
 
 		<!-- Base de datos -->

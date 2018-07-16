@@ -121,7 +121,7 @@ function studentsTotal (sede, turma) {
       inativas =+ 1;
     }
   }
-
+  
 }
 //segundo gráfico
 function hseAndTech (sede, turma) {

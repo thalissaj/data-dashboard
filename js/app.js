@@ -114,14 +114,33 @@ function studentsTotal (sede, turma) {
   var totalStudents = data[sede][turma].students.length;
   var ativas = 0;
   var inativas = 0;
-  for (i in data[sede][turma]['students']){
-    if(data[sede][turma]['students'] === true){
-      ativas =+ 1;
+  for (var i = 0; i < totalStudents; i++){
+    if(data[sede][turma]['students'][i]['active'] === false){
+      inativas += 1;
     }else{
-      inativas =+ 1;
+      ativas += 1;
     }
   }
-  
+  var insertGrafic = document.createElement('div');
+  insertGrafic.setAttribute("id", "donutchart");
+  google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Ativas',     ativas],
+          ['Inativas',      inativas],
+        ]);
+
+        var options = {
+          title: 'Total de Alunas: ' + totalStudents,
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+      entranceDiv.appendChild(insertGrafic);
 }
 //segundo gráfico
 function hseAndTech (sede, turma) {
@@ -159,7 +178,3 @@ function satisfaction (sede, turma){
 //     }
 //   }
 // }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1f1f913e5f127c7d008f0e1e3de4a071054559e1

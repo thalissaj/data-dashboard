@@ -7,9 +7,22 @@ function clearDiv() {
   clearEntrence.innerHTML='';
 }
 
-function aqp2016_2() {
-  clearDiv();
-}
+// function aqp2016_2() {
+//   clearDiv();
+//
+//
+// }
+
+
+
+
+
+
+
+
+
+
+
 
 // for(sede in data) {
 //   console.log(sede);

@@ -11,34 +11,35 @@
       <img src="assets/laboratoria2.png" alt="logo" class="logo-rom">
     </nav>
     <aside id="sideBar">
-      <div class="toggle_btn" onclick="toggleSidebar()">
+      <div class="toggle_btn" onmouseover="toggleSidebar()">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <ul>
-        <li><b>AREQUIPA</b></li>
-        <li onclick="aqp2016_2()">2016-2</li>
-        <li>2017-1</li>
-        <li><b>CIDADE DO MÉXICO</b></li>
-        <li>2017-1</a></li>
-        <li>2017-2</li>
-        <li><b>LIMA</b></li>
-        <li>2016-2</li>
-        <li>2017-1</li>
-        <li>2017-2</li>
-        <li><b>SANTIAGO CHILE</b></li>
-        <li>2016-2</li>
-        <li>2017-1</li>
-        <li>2017-2</li>
+      <ul id="sede">
+        <li onclick='loadEverything()' value="AQP"><b>AREQUIPA</b></li>
+        <li><a"aqp2016_2()">2016-2</a></li>
+        <li><a"aqp2017-1()">2017-1</a></li>
+        <li onclick='cdmx' value="CDMX"><b>CIDADE DO MÉXICO</b></li>
+        <li><a onclick="">2017-1</a></li>
+        <li><a onclick="">2017-2</a></li>
+        <li onclick='lim' value="LIM"><b>LIMA</b></li>
+        <li><a onclick="">2016-2</a></li>
+        <li><a onclick="">2017-1</a></li>
+        <li><a onclick="">2017-2</a></li>
+        <li onclick='scl' value="SCL"><b>SANTIAGO CHILE</b></li>
+        <li><a onclick="">2016-2</a></li>
+        <li><a onclick="">2017-1</a></li>
+        <li><a onclick="">2017-2</a></li>
       </ul>
     </aside>
+
   <div id="entrence" class="entrence">
     <h4>Olá</h4>
     <input id="name" type="text" placeholder="Digite seu nome...">
     <button class="entrece-btn" type="button" name="button">Entrar</button>
   </div>
-
+<div id="pages"> </div>
 		<!-- Base de datos -->
 		<script src="./js/data.js"></script>
 		<!-- Aquí va tus archivos JS -->

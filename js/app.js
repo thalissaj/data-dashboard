@@ -127,7 +127,7 @@ function studentsTotal (sede, turma) {
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
+          ['Permanencia', 'Status'],
           ['Ativas',     ativas],
           ['Inativas',      inativas],
         ]);
@@ -144,7 +144,44 @@ function studentsTotal (sede, turma) {
 }
 //segundo gráfico
 function hseAndTech (sede, turma) {
-
+  var mediaTech = 0;
+  var mediaHse = 0;
+  var studentsAtingiu = [];
+  var totalStudents = data[sede][turma].students.length;
+  var nSprints = 0;
+  for (student in data[sede][turma]['students']){
+    for(scores in data[sede][turma]['students'][student]['sprints']){
+      mediaTech += data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
+      mediaHse += data[sede][turma]['students'][student]['sprints'][scores]['score']['hse'];
+    }
+    mediaTech = mediaTech / data[sede][turma]['students'][student]['sprints'].length;
+    mediaHse = mediaHse / data[sede][turma]['students'][student]['sprints'].length;
+    if (mediaTech >= 1260 && mediaHse >= 840){
+      studentsAtingiu.push(data[sede][turma]['students'][student].name);
+    }
+    mediaTech = 0;
+    mediaHse = 0;
+  }
+  var atingiu = studentsAtingiu.length;
+  var nopAtingiu = totalStudents - atingiu;
+  var insertGraficTechAndHse = document.createElement('div');
+  insertGraficTechAndHse.setAttribute("id", "donutchart-hse-tech");
+  google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Alunas', 'Pontuação'],
+          ['Atingiu',     atingiu],
+          ['Não Atingiu',      nopAtingiu]
+        ]);
+        var options = {
+          title: 'Estudantes que atingiram 70%, em media, em Tech e HSE',
+          pieHole: 0.4,
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart-hse-tech'));
+        chart.draw(data, options);
+      }
+      entranceDiv.appendChild(insertGraficTechAndHse);
 }
 //terceiro gráfico
 function npsSprints (sede, turma) {

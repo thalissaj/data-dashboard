@@ -10,14 +10,9 @@ var userButton = document.getElementsByClassName('entrence-btn')[0];
     clearDiv();
     var indicate = document.createElement("img");
     indicate.setAttribute("src", "assets/images/sets.png");
-<<<<<<< HEAD
     var sedesNavigator = document.createElement("p")
     ;
     sedesNavigator.innerHTML = 'Use o menu para navegar' + '<br>' + 'pelas turmas';
-=======
-    var sedesNavigator = document.createElement("p");
-    sedesNavigator.innerHTML = "Use o menu para navegar pelas turmas";
->>>>>>> f071bdf853fdc2eae89b5e33ba72365a7db68804
     entranceDiv.appendChild(indicate);
     entranceDiv.appendChild(sedesNavigator);
     entranceDiv.className = "navigator";
@@ -105,14 +100,9 @@ function callGrafics(sede, turma) {
   npsSprints(sede, turma);
   tech(sede, turma);
   hse(sede, turma);
-<<<<<<< HEAD
   document.querySelector("#entrence").classList.remove('yellow');
   document.querySelector("#entrence").classList.remove('navigator');
   document.querySelector("#entrence").classList.remove('grafics');
-=======
-  document.querySelector(".entrence").classList.remove('yellow');
-  document.querySelector(".entrence").classList.remove('grafics');
->>>>>>> f071bdf853fdc2eae89b5e33ba72365a7db68804
   document.getElementById('entrence').className = 'grafics';
 }
 //primeiro grafico

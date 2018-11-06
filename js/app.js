@@ -105,12 +105,16 @@ function callGrafics(sede, turma) {
   document.querySelector("#entrence").classList.remove('grafics');
   document.getElementById('entrence').className = 'grafics';
 }
-//primeiro grafico
+function estudantes (sede, turma){
+  return data[sede][turma].students;
+}
+function estudantesContagem (sede, turma){
+  return data[sede][turma].students.length;
+}
 function studentsTotal (sede, turma) {
-  var totalStudents = data[sede][turma].students.length;
   var ativas = 0;
   var inativas = 0;
-  for (var i = 0; i < totalStudents; i++){
+  for (var i = 0; i < estudantesContagem(sede, turma); i++){
     if(data[sede][turma]['students'][i]['active'] === false){
       inativas += 1;
     }else{
@@ -128,7 +132,7 @@ function studentsTotal (sede, turma) {
       ['Inativas',      inativas],
     ]);
     var options = {
-      title: 'Total de Alunas: ' + totalStudents,
+      title: 'Total de Alunas: ' + estudantesContagem(sede, turma),
       pieHole: 0.4,
     };
     var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -141,22 +145,21 @@ function hseAndTech (sede, turma) {
   var mediaTech = 0;
   var mediaHse = 0;
   var studentsAtingiu = [];
-  var totalStudents = data[sede][turma].students.length;
-  for (student in data[sede][turma]['students']){
-    for(scores in data[sede][turma]['students'][student]['sprints']){
-      mediaTech += data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
-      mediaHse += data[sede][turma]['students'][student]['sprints'][scores]['score']['hse'];
+  for (student of data[sede][turma]['students']){
+    for(scores of student['sprints']){
+      mediaTech += scores['score']['tech'];
+      mediaHse += scores['score']['hse'];
     }
-    mediaTech = mediaTech / data[sede][turma]['students'][student]['sprints'].length;
-    mediaHse = mediaHse / data[sede][turma]['students'][student]['sprints'].length;
+    mediaTech = mediaTech / student['sprints'].length;
+    mediaHse = mediaHse / student['sprints'].length;
     if (mediaTech >= 1260 && mediaHse >= 840){
-      studentsAtingiu.push(data[sede][turma]['students'][student].name);
+      studentsAtingiu.push(student.name);
     }
     mediaTech = 0;
     mediaHse = 0;
   }
   var atingiu = studentsAtingiu.length;
-  var nopAtingiu = totalStudents - atingiu;
+  var nopAtingiu = estudantesContagem(sede, turma) - atingiu;
   var insertGraficTechAndHse = document.createElement('div');
   insertGraficTechAndHse.setAttribute("id", "donutchart-hse-tech");
   google.charts.load("current", {packages:["corechart"]});
@@ -188,32 +191,31 @@ function tech (sede, turma) {
   var studentsSprint3 = [];
   var studentsSprint4 = [];
   var totalSprints;
-  var totalStudents = data[sede][turma].students.length;
-  for (student in data[sede][turma]['students']){
-    for(scores in data[sede][turma]['students'][student]['sprints']){
-      totalSprints = data[sede][turma]['students'][student]['sprints'].length;
-      if (data[sede][turma]['students'][student]['sprints'][scores].number === 1){
-        techSprint1 = data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
+  for (student of data[sede][turma]['students']){
+    for(scores of student['sprints']){
+      totalSprints = student.sprints.length;
+      if (scores.number === 1){
+        techSprint1 = scores['score']['tech'];
         if(techSprint1 >= 1260){
-          studentsSprint1.push(data[sede][turma]['students'][student].name);
+          studentsSprint1.push(student.name);
         }
       }
-      if (data[sede][turma]['students'][student]['sprints'][scores].number === 2){
-        techSprint2 = data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
+      if (scores.number === 2){
+        techSprint2 = scores['score']['tech'];
         if(techSprint2 >= 1260){
-          studentsSprint2.push(data[sede][turma]['students'][student].name);
+          studentsSprint2.push(student.name);
         }
       }
-      if (data[sede][turma]['students'][student]['sprints'][scores].number === 3){
-        techSprint3 = data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
+      if (scores.number === 3){
+        techSprint3 = scores['score']['tech'];
         if(techSprint3 >= 1260){
-          studentsSprint3.push(data[sede][turma]['students'][student].name);
+          studentsSprint3.push(student.name);
         }
       }
-      if (data[sede][turma]['students'][student]['sprints'][scores].number === 4){
-        techSprint4 = data[sede][turma]['students'][student]['sprints'][scores]['score']['tech'];
+      if (scores.number === 4){
+        techSprint4 = scores['score']['tech'];
         if(techSprint4 >= 1260){
-          studentsSprint4.push(data[sede][turma]['students'][student].name);
+          studentsSprint4.push(student.name);
         }
       }
     }
@@ -223,10 +225,10 @@ var totalAtingiu1 = studentsSprint1.length;
 var totalAtingiu2 = studentsSprint2.length;
 var totalAtingiu3 = studentsSprint3.length;
 var totalAtingiu4 = studentsSprint4.length;
-var nTotalAtingiu1 = totalStudents - studentsSprint1.length;
-var nTotalAtingiu2 = totalStudents - studentsSprint2.length;
-var nTotalAtingiu3 = totalStudents - studentsSprint3.length;
-var nTotalAtingiu4 = totalStudents - studentsSprint4.length;
+var nTotalAtingiu1 = estudantesContagem(sede, turma) - studentsSprint1.length;
+var nTotalAtingiu2 = estudantesContagem(sede, turma) - studentsSprint2.length;
+var nTotalAtingiu3 = estudantesContagem(sede, turma) - studentsSprint3.length;
+var nTotalAtingiu4 = estudantesContagem(sede, turma) - studentsSprint4.length;
 var insertGraficTech = document.createElement('div');
 insertGraficTech.setAttribute("id", "chart_tech");
 google.charts.load('current', {'packages':['corechart']});
@@ -274,7 +276,6 @@ function hse (sede, turma) {
   var studentsSprint3 = [];
   var studentsSprint4 = [];
   var totalSprints;
-  var totalStudents = data[sede][turma].students.length;
   for (student in data[sede][turma]['students']){
     for(scores in data[sede][turma]['students'][student]['sprints']){
       totalSprints = data[sede][turma]['students'][student]['sprints'].length;
@@ -309,10 +310,10 @@ function hse (sede, turma) {
   var totalAtingiu2 = studentsSprint2.length;
   var totalAtingiu3 = studentsSprint3.length;
   var totalAtingiu4 = studentsSprint4.length;
-  var nTotalAtingiu1 = totalStudents - studentsSprint1.length;
-  var nTotalAtingiu2 = totalStudents - studentsSprint2.length;
-  var nTotalAtingiu3 = totalStudents - studentsSprint3.length;
-  var nTotalAtingiu4 = totalStudents - studentsSprint4.length;
+  var nTotalAtingiu1 = estudantesContagem (sede, turma) - studentsSprint1.length;
+  var nTotalAtingiu2 = estudantesContagem (sede, turma) - studentsSprint2.length;
+  var nTotalAtingiu3 = estudantesContagem (sede, turma) - studentsSprint3.length;
+  var nTotalAtingiu4 = estudantesContagem (sede, turma) - studentsSprint4.length;
   var insertGraficHse = document.createElement('div');
   insertGraficHse.setAttribute("id", "chart_hse");
   google.charts.load('current', {'packages':['corechart']});
